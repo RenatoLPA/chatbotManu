@@ -1,0 +1,196 @@
+body {
+    background-image: url('./background.png'); /* Substitua pelo caminho da sua imagem */
+    background-size: cover; /* Faz a imagem cobrir todo o fundo */
+
+}
+/* body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #1976d2;
+    font-family: Arial, sans-serif;
+} */
+
+.chat-container {
+    width: 360px; /* Largura do chat bot */
+    max-width: 100%; /* Para responsividade */
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #fff;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: fixed; /* Para que o chat fique fixo na tela */
+    bottom: 130px;
+    right: 20px;
+    z-index: 1000; /* Para garantir que fique acima de outros elementos */
+}
+
+/* Estilos do cabeçalho do chat */
+.chat-header {
+    background-color: #1976d2;
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between; /* Para separar o título do botão de fechar */
+    align-items: center;
+}
+
+/* Estilos do corpo do chat */
+.chat-body {
+    padding: 10px;
+    font-size: 14px;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    max-height: 300px; /* Altura máxima do corpo do chat */
+    overflow-y: auto; /* Permite rolagem vertical */
+}
+
+/* Estilos do rodapé do chat */
+.chat-footer {
+    padding: 10px;
+    background-color: #9e939392; /*Alteração*/
+    /* background-color: #f1f1f1; Imprelmentação Inicial */
+    display: flex;
+    align-items: center; /* Alinha verticalmente */
+}
+
+/* Estilos do campo de entrada */
+#inputMessage {
+    width: 100%; /* Ocupar toda a largura do contêiner */
+    min-height: 40px; /* Altura mínima para o campo */
+    max-height: 100px; /* Altura máxima para o campo */
+    overflow-y: hidden; /* Oculta a rolagem vertical */
+    resize: none; /* Impede redimensionamento manual */
+    padding: 5px;
+    box-sizing: border-box; /* Inclui padding na largura total */
+}
+
+
+/* Estilos do botão de enviar */
+.chat-footer button {
+    background-color: #1976d2;
+    color: white;
+    border: 2px solid gray; /*Alteração*/
+    /* border: none; Implementação inicial */
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+/* Estilos do botão flutuante */
+.floating-btn {
+    position: fixed;
+    bottom: 75px; /* Aumentamos a distância do fundo para não sobrepor o botão de enviar */
+    right: 25px;
+    background-color: #1976d2;
+    color: white;
+    border: 2px solid gray; /*Alteração*/
+    /* border: none; Implementação Inicial */
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000; /* Para garantir que fique acima de outros elementos */
+}
+
+.avatar-chat {
+    width: 60px; /* Aumente a largura para 60px ou o tamanho desejado */
+    height: 60px; /* Aumente a altura para 60px ou o tamanho desejado */
+    border-radius: 50%; /* Mantém a imagem circular */
+    object-fit: cover; /* Garante que a imagem se ajuste ao contêiner */
+    transition: transform 0.2s; /* Adiciona uma transição suave para o efeito de hover */
+}
+
+
+
+.avatar-chat:hover {
+    transform: scale(1.1); /* Aumenta a imagem ao passar o mouse */
+}
+/* VERSÃO ANTERIOR Estilos do botão flutuante */
+/* .floating-btn { */
+    /* position: fixed; */
+    /* bottom: 70px; Aumentamos a distância do fundo para não sobrepor o botão de enviar */
+    /* right: 20px; */
+    /* background-color: transparent; */
+    /* background-color: #1976d2; */
+    /* color: white; */
+    /* border: none; */
+    /* border-radius: 50%; */
+    /* padding: 15px; */
+    /* cursor: pointer; */
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); */
+    /* z-index: 1000; Para garantir que fique acima de outros elementos */
+/* } */
+
+/* Estilos para o modo de tela cheia */
+.chat-container:fullscreen {
+    width: 100vw; /* Largura total da tela */
+    height: 100vh; /* Altura total da tela */
+    top: 0; /* Alinha ao topo */
+    left: 0; /* Alinha à esquerda */
+    border-radius: 0; /* Remove bordas arredondadas */
+    box-shadow: none; /* Remove sombra */
+}
+
+.chat-container:fullscreen .chat-body {
+    max-height: calc(100vh - 150px); /* Altura máxima do corpo do chat, ajustando para o rodapé */
+    
+}
+
+.chat-container:fullscreen .chat-footer {
+    position: absolute; /* Para fixar o rodapé na parte inferior */
+    bottom: 0; /* Alinha ao fundo */
+    left: 0; /* Alinha à esquerda */
+    right: 0; /* Alinha à direita */
+    padding: 10px; /* Espaçamento */
+}
+
+/* Estilos para o indicador de digitação */
+.typing-indicator {
+    font-style: italic;
+    font-size: 5pc; /*Tamanho da fonte da interação antes da resposta do chatbot */
+    color: #1976d2; /*Alteração*/
+    /* color: #888; Implementeção Inicial */
+    margin-bottom: 20px;
+}
+
+/* Animação de pontos */
+.typing-indicator span {
+    display: inline-block;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 20% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+/* Estilo para mensagens enviadas pelo usuário */
+.user-message {
+    background-color: white(23, 129, 60); /* Cor azul para mensagens enviadas */
+    color: black; /* Texto branco */
+    padding: 10px;
+    border-radius: 5px;
+    margin: 5px 0;
+    margin: 0; /* Remove margens padrão dos parágrafos */
+    word-wrap: break-word; /* Quebra palavras longas se necessário */
+    overflow-wrap: break-word; /* Quebra palavras longas em navegadores que suportam */
+    white-space: pre-wrap; /* Permite quebras de linha automáticas */
+}
+
+/* Estilo para mensagens do chatbot */
+.bot-message {
+    background-color: #1976d2; /* Cor cinza para respostas do chatbot */
+    color: white; /* Texto preto */
+    padding: 10px;
+    /* border-radius: 5px; Implementação Inicial */
+    border-radius: 20px; /*Alteração*/
+    margin: 5px 0;
+}
